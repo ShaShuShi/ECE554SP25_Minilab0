@@ -1,0 +1,62 @@
+Resource Usage Summary report for Minilab0
+Mon Jan 27 20:12:03 2025
+Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Resource Usage Summary
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2023  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++--------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                  ;
++---------------------------------------------+----------------+
+; Resource                                    ; Usage          ;
++---------------------------------------------+----------------+
+; Estimate of Logic utilization (ALMs needed) ; 146            ;
+;                                             ;                ;
+; Combinational ALUT usage for logic          ; 253            ;
+;     -- 7 input functions                    ; 14             ;
+;     -- 6 input functions                    ; 9              ;
+;     -- 5 input functions                    ; 13             ;
+;     -- 4 input functions                    ; 91             ;
+;     -- <=3 input functions                  ; 126            ;
+;                                             ;                ;
+; Dedicated logic registers                   ; 141            ;
+;                                             ;                ;
+; I/O pins                                    ; 70             ;
+; Total MLAB memory bits                      ; 0              ;
+; Total block memory bits                     ; 64             ;
+;                                             ;                ;
+; Total DSP Blocks                            ; 1              ;
+;                                             ;                ;
+; Maximum fan-out node                        ; CLOCK_50~input ;
+; Maximum fan-out                             ; 149            ;
+; Total fan-out                               ; 1546           ;
+; Average fan-out                             ; 2.85           ;
++---------------------------------------------+----------------+
+
+
