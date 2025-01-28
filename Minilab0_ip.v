@@ -63,7 +63,7 @@ reg [DATA_WIDTH-1:0] datain [0:1];
 reg [DATA_WIDTH*3-1:0] result;
 
 wire rst_n;
-wire [1:0] rden, wren, full, empty;
+wire [1:0] rden, wren, rdfull, rdempty, wrfull, wrempty;
 wire [DATA_WIDTH-1:0] dataout [0:1];
 wire [DATA_WIDTH*3-1:0] macout;
 
@@ -75,28 +75,26 @@ genvar i;
 
 generate
   for (i=0; i<2; i=i+1) begin : fifo_gen
-    FIFO
-    #(
-    .DEPTH(DEPTH),
-    .DATA_WIDTH(DATA_WIDTH)
-    ) input_fifo
+    fifo_ip
+    input_fifo
     (
-    .clk(CLOCK_50),
-    .rst_n(rst_n),
-    .rden(rden[i]),
-    .wren(wren[i]),
-    .i_data(datain[i]),
-    .o_data(dataout[i]),
-    .full(full[i]),
-    .empty(empty[i])
+    .aclr(~rst_n),
+    .data(datain[i]),
+    .rdclk(CLOCK_50),
+    .rdreq(rden[i]),
+    .wrclk(CLOCK_50),
+    .wrreq(wren[i]),
+    .q(dataout[i]),
+    .rdempty(rdempty[i]),
+    .rdfull(rdfull[i]),
+    .wrempty(wrempty[i]),
+    .wrfull(wrfull[i])
     );
   end
 endgenerate
 
-MAC
-#(
-.DATA_WIDTH(DATA_WIDTH)
-) mac
+mac_ip
+mac
 (
 .clk(CLOCK_50),
 .rst_n(rst_n),
@@ -131,7 +129,7 @@ always @(posedge CLOCK_50 or negedge rst_n) begin
     case(state)
 	   FILL:
 		begin
-		  if (full) begin
+		  if (wrfull) begin
 		    state <= EXEC;
 		  end
 		  else begin
@@ -141,7 +139,7 @@ always @(posedge CLOCK_50 or negedge rst_n) begin
 	   end	
 		EXEC:
 		begin
-		  if (empty) begin
+		  if (rdempty) begin
 		    state <= DONE;
 		  end
 		end
